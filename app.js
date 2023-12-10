@@ -1,11 +1,11 @@
 const express = require('express');
-const res = require('express/lib/response');
+const userRoute = require('./backhand/routes/user_routes');
+var bodyParser = require('body-parser');
 const app = express();
-const facultyRoute = require('./api/routes/faculty');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(userRoute);
 
-app.use("/faculty",facultyRoute);
-app.use((req,res,next)=>{
-    res.status(200).json({massage:"hello world...dsd"})
-})
 
 module.exports = app;
